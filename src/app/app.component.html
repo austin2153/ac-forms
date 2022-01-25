@@ -1,44 +1,58 @@
+
+<!-- template driven form example -->
+<!-- on submit method binded to form submission -->
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-      <!-- template driven form example -->
-      <!-- on submit method binded to form submission -->
+      <div class="bd-content ps-lg-4">
+        <h2 id="example">Template Driven Form
+          <a 
+            class="anchorjs-link " 
+            aria-label="Anchor" 
+            data-anchorjs-icon="#" 
+            href="#example" 
+            style="padding-left: 0.375em;">
+          </a>
+        </h2>
+        <p>Example of a template driven form using <code>ngModel</code> and <code>ngIf</code>.</p>
+      </div>
       <form #tdForm="ngForm" (ngSubmit)="onSubmit()">
-        <div class="form-group">
+        <div class="mb-3">
           <!-- Mail address (should not be empty and should be an email address) -->
           <!-- local reference #email, binded to ngModel to get access to the input  -->
-          <label for="email">Email</label>
+          <label for="email" class="form-label">Email</label>
           <input
             type="email" 
             id="email" 
             ngModel 
             name="email"
+            placeholder="name@example.com"
             required
             email
             class="form-control"
             #email="ngModel">
             <!-- show span if email is not valid and touched  -->
-          <span class="help-block" *ngIf="!email.valid && email.touched">Enter a valid email address</span>
+          <div id="passwordHelpBlock" class="form-text" *ngIf="!email.valid && email.touched">Enter a valid email address</div>
         </div>
-        <div class="form-group">
+        <div class="mb-3">
           <!-- a dropdown which allows the user to select from three options
           <!-- one way property binding with [ngModel]. dont want to modify defaultSubscription var with user selection-->
-          <label for="subscription">Subscription</label>
+          <label for="subscription" class="form-label">Subscription</label>
           <select 
             name="subscription" 
             id="subscription"
             [ngModel]="defaultSubscription"
-            class="form-control">
+            class="form-select">
             <option
               *ngFor="let subscription of subscriptions"
               [value]="subscription">{{ subscription }}
             </option>
           </select>
         </div>
-        <div class="form-group">
+        <div class="mb-3">
           <!-- a password field (should not be empty) -->
           <!-- local reference #password, binded to ngModel to get access to the input  -->
-          <label for="password">Password</label>
+          <label for="password" class="form-label">Password</label>
           <input 
             type="password" 
             id="password" 

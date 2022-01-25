@@ -10,10 +10,10 @@ export class AppComponent {
   subscriptions = ['Basic', 'Advanced', 'Pro'];
   defaultSubscription = 'Advanced';
 
-  // use view child to access tdForm
+  // use view child to access tdForm on componnent
   @ViewChild('tdForm') tdForm: NgForm;
 
-  // Print tdForm values when submit button is pressed
+  // Print tdForm values to console when submit button is pressed
   onSubmit() {
     console.log(this.tdForm.value);
   }
