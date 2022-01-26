@@ -7,8 +7,13 @@ import { NgForm } from '@angular/forms';
 })
 export class AppComponent {
   title = 'ac-forms';
+
+  // tdForm vars
   subscriptions = ['Basic', 'Advanced', 'Pro'];
   defaultSubscription = 'Advanced';
+
+  // reactive form vars
+  
 
   // use view child to access tdForm on componnent
   @ViewChild('tdForm') tdForm: NgForm;

@@ -4,8 +4,8 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-      <div class="bd-content ps-lg-4">
-        <h2 id="example">Template Driven Form
+      <div class="mb-3">
+        <h2 id="example">Template-Driven Form
           <a 
             class="anchorjs-link " 
             aria-label="Anchor" 
@@ -14,7 +14,10 @@
             style="padding-left: 0.375em;">
           </a>
         </h2>
-        <p>Example of a template driven form using <code>ngModel</code> and <code>ngIf</code>.</p>
+        <p>Example of a template driven form. 
+          <code>ngModel</code> is used to bind input. 
+          <code>ngIf</code> is used to validate fields and display helper messages.
+        </p>
       </div>
       <form #tdForm="ngForm" (ngSubmit)="onSubmit()">
         <div class="mb-3">
@@ -67,6 +70,62 @@
         <p *ngIf="!tdForm.valid && tdForm.touched">The form is invalid</p>
         <button class="btn btn-primary" type="submit">Submit</button>
       </form>
+      <hr>
+      <div class="mb-3">
+        <h2 id="example">Reactive Form
+          <a 
+            class="anchorjs-link " 
+            aria-label="Anchor" 
+            data-anchorjs-icon="#" 
+            href="#example" 
+            style="padding-left: 0.375em;">
+          </a>
+        </h2>
+        <p>Notes here <code>....</code> 
+        </p>
+        <!--
+          Create a Form with the following Controls and Validators
+          1) Project Name (should not be empty)
+          2) Mail (should not be a empty and a valid email)
+          3) Project Status Dropdown, with three values: 'Stable', 'Critical', 'Finished'
+          4) Submit Button
+
+          Add your own Validator which doesn't allow "Test" as a Project Name
+
+          Also implement that Validator as an async Validator (replace the other one)
+
+          Upon submitting the form, simply print the value to the console
+        -->
+        <!-- reative form example -->
+        <form>
+          <div class="mb-3">
+            <label for="name" class="form-label">Project Name</label>
+            <input 
+              type="text" 
+              id="name"
+              class="form-control">
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input 
+              type="email" 
+              id="email"
+              class="form-control">
+          </div>
+          <div class="mb-3">
+            <label for="status" class="form-label">Status</label>
+            <select 
+              class="form-select"
+              name="status" 
+              id="status">
+              <option value="stable">Stable</option>
+              <option value="critical">Critical</option>
+              <option value="finished">Finished</option>
+            </select>
+          </div>
+          <button class="btn btn-primary" type="submit">Create Project</button>
+        </form>
+      </div>
     </div>
   </div>
 </div>
