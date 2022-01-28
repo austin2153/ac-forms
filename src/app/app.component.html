@@ -34,12 +34,16 @@
             email
             class="form-control"
             #email="ngModel">
-            <!-- show span if email is not valid and touched  -->
-          <div id="passwordHelpBlock" class="form-text" *ngIf="!email.valid && email.touched">Enter a valid email address</div>
+          <!-- show div if email is not valid and touched  -->
+          <div 
+            id="passwordHelpBlock" 
+            class="form-text" 
+            *ngIf="!email.valid && email.touched">Enter a valid email address
+          </div>
         </div>
         <div class="mb-3">
-          <!-- a dropdown which allows the user to select from three options
-          <!-- one way property binding with [ngModel]. dont want to modify defaultSubscription var with user selection-->
+          <!-- one way property binding with [ngModel] because we dont want to modify 
+          defaultSubscription var with user selection-->
           <label for="subscription" class="form-label">Subscription</label>
           <select 
             name="subscription" 
@@ -54,7 +58,7 @@
         </div>
         <div class="mb-3">
           <!-- a password field (should not be empty) -->
-          <!-- local reference #password, binded to ngModel to get access to the input  -->
+          <!-- local reference #password, binded to ngModel (two-way) to get access to the input  -->
           <label for="password" class="form-label">Password</label>
           <input 
             type="password" 
@@ -64,6 +68,7 @@
             required
             class="form-control"
             #password='ngModel'>
+          <!-- show span if password is not valid and touched  -->
           <span class="help-block" *ngIf="!password.valid && password.touched">Enter a valid password</span>
         </div>
         <!-- show paragraph if form is invalid && touched using ngIf -->
@@ -81,43 +86,43 @@
             style="padding-left: 0.375em;">
           </a>
         </h2>
-        <p>Notes here <code>....</code> 
+        <p>Example of a Reactive Form. A custom validator <code>invalidProjectName</code> 
+          is used on the APM input. <code>ngIf</code> is used to display a div based on the custom validator.  
         </p>
-        <!--
-          Create a Form with the following Controls and Validators
-          1) Project Name (should not be empty)
-          2) Mail (should not be a empty and a valid email)
-          3) Project Status Dropdown, with three values: 'Stable', 'Critical', 'Finished'
-          4) Submit Button
-
-          Add your own Validator which doesn't allow "Test" as a Project Name
-
-          Also implement that Validator as an async Validator (replace the other one)
-
-          Upon submitting the form, simply print the value to the console
-        -->
         <!-- reative form example -->
-        <form>
+        <!-- bind formGroup to projectForm, formControlName binds inputs to formControl in .ts -->
+        <form [formGroup]="projectForm" (ngSubmit)="onSaveProject()">
           <div class="mb-3">
-            <label for="name" class="form-label">Project Name</label>
-            <input 
+            <label for="name" class="form-label">APM</label>
+            <input
               type="text" 
               id="name"
+              formControlName="projectName"
               class="form-control">
+              <!-- display if invalid, & dirty or touched -->
+              <div 
+                id="passwordHelpBlock" 
+                class="form-text"
+                *ngIf="!projectForm.controls.projectName?.valid && 
+                (projectForm.controls.projectName?.dirty || projectForm.controls.projectName?.touched)">
+                Invalid APM Number!
+              </div>
           </div>
           <div class="mb-3">
             <label for="email" class="form-label">Email</label>
             <input 
               type="email" 
-              id="email"
+              id="mail"
+              formControlName="mail"
               class="form-control">
           </div>
           <div class="mb-3">
             <label for="status" class="form-label">Status</label>
             <select 
-              class="form-select"
               name="status" 
-              id="status">
+              id="status"
+              formControlName="projectStatus"
+              class="form-select">
               <option value="stable">Stable</option>
               <option value="critical">Critical</option>
               <option value="finished">Finished</option>
