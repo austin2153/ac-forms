@@ -1,4 +1,5 @@
 import { FormControl} from "@angular/forms";
+import { Observable } from "rxjs";
 
 // custom validator for reactive form (static method)
 // receives a FormControl object, 
@@ -17,4 +18,24 @@ export class CustomValidators {
       }
       return null;
   }
+
+  // takes a form control and returns a promise or observable of type any
+  // new promise which will receive a function argument to the constructor
+  // setTimeout will execute a timeout after 2 seconds
+  static asyncInvalidProject(control: FormControl): Promise<any> | Observable<any> {
+    let apmReg = new RegExp('^APM+[0-9]{7}$');
+    const promise = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        if (!apmReg.test(control.value)){
+          resolve({'invalidProjectName': true});
+        } else {
+          resolve(null);
+        }
+      }, 2000);
+    })
+    return promise;
+  }
+
+
+
 }

@@ -98,7 +98,7 @@
               type="text" 
               id="name"
               formControlName="projectName"
-              class="form-control">
+              class="form-control" placeholder="Ex. APM1234567">
               <!-- display if invalid, & dirty or touched -->
               <div 
                 id="passwordHelpBlock" 
@@ -128,7 +128,11 @@
               <option value="finished">Finished</option>
             </select>
           </div>
-          <button class="btn btn-primary" type="submit">Create Project</button>
+          <button 
+            class="btn btn-primary" 
+            type="submit"
+            [disabled]="!projectForm.valid"
+            >Create Project</button>
         </form>
       </div>
     </div>
