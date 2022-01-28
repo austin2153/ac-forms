@@ -19,15 +19,16 @@ export class CustomValidators {
       return null;
   }
 
+
+  // custom async validator
   // takes a form control and returns a promise or observable of type any
   // new promise which will receive a function argument to the constructor
   // setTimeout will execute a timeout after 2 seconds
-  static asyncInvalidProject(control: FormControl): Promise<any> | Observable<any> {
-    let apmReg = new RegExp('^APM+[0-9]{7}$');
+  static usernameValidation(control: FormControl): Promise<any> | Observable<any> {
     const promise = new Promise((resolve, reject) => {
       setTimeout(() => {
-        if (!apmReg.test(control.value)){
-          resolve({'invalidProjectName': true});
+        if (control.value === 'campbella') {
+          resolve({'invalidUsername': true});
         } else {
           resolve(null);
         }
@@ -35,7 +36,4 @@ export class CustomValidators {
     })
     return promise;
   }
-
-
-
 }

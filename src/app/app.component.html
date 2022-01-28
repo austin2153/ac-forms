@@ -98,7 +98,8 @@
               type="text" 
               id="name"
               formControlName="projectName"
-              class="form-control" placeholder="Ex. APM1234567">
+              class="form-control" 
+              placeholder="e.g. APM1234567">
               <!-- display if invalid, & dirty or touched -->
               <div 
                 id="passwordHelpBlock" 
@@ -107,6 +108,15 @@
                 (projectForm.controls.projectName?.dirty || projectForm.controls.projectName?.touched)">
                 Invalid APM Number!
               </div>
+          </div>
+          <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input
+              type="text" 
+              id="username"
+              formControlName="userName"
+              class="form-control" 
+              placeholder="e.g. campbella">
           </div>
           <div class="mb-3">
             <label for="email" class="form-label">Email</label>
