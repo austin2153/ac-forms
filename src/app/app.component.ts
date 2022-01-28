@@ -8,34 +8,29 @@ import { CustomValidators } from './custom-validators';
 })
 export class AppComponent implements OnInit{
   title = 'ac-forms';
-
-  // tdForm - vars
   subscriptions = ['Basic', 'Advanced', 'Pro'];
   defaultSubscription = 'Advanced';
+  projectForm: FormGroup;
 
-  // tdForm - use view child to access tdForm on componnent
+  // use view child to access tdForm on componnent
   @ViewChild('tdForm') tdForm: NgForm;
 
-  // tdForm - Print tdForm values to console when submit button is pressed
+  // print tdForm values to console
   onSubmit() {
     console.log(this.tdForm.value);
   }
 
-  // reactive form - vars
-  projectForm: FormGroup;
-
+  // reactive form with a custom validator on projectName
   ngOnInit() {
-    // exclude calling the validator methods Validators.email()
-    // Angular takes care of this at the form level
-    // required = not empty, email = email validation
     this.projectForm = new FormGroup({
-      'projectName': new FormControl(null,[Validators.required, CustomValidators.invalidProjectName]),
-      'mail': new FormControl(null,[Validators.required, Validators.email]),
+      'projectName': new FormControl(null, [Validators.required, CustomValidators.invalidProjectName]),
+      'mail': new FormControl(null, [Validators.required, Validators.email]),
       'projectStatus': new FormControl('critical')
     });
 
   }
 
+  // output form values to console
   onSaveProject() {
     console.log(this.projectForm.value);
   }
