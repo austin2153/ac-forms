@@ -17,7 +17,12 @@ export class AppComponent implements OnInit{
 
   // print tdForm values to console
   onSubmit() {
-    console.log(this.tdForm.value);
+    const value = this.tdForm.value;
+    console.log(value);
+    console.log(value.email);
+    console.log(value.subscription);
+    console.log(value.password);
+    console.log(value.amount);
   }
 
   // CustomValidators.usernameValidation

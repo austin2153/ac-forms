@@ -56,6 +56,19 @@
             </option>
           </select>
         </div>
+        <!-- amount, pattern match (not 0)-->
+        <div class="mb-3">
+          <label for="amount" class="form-label">Amount</label>
+          <input
+            type="number" 
+            name="amount" 
+            id="amount"
+            ngModel
+            #amount="ngModel"
+            class="form-control"
+            required
+            pattern="^[1-9]+[0-9]*$">
+        </div>
         <div class="mb-3">
           <!-- a password field (should not be empty) -->
           <!-- local reference #password, binded to ngModel (two-way) to get access to the input  -->
@@ -73,7 +86,12 @@
         </div>
         <!-- show paragraph if form is invalid && touched using ngIf -->
         <p *ngIf="!tdForm.valid && tdForm.touched">The form is invalid</p>
-        <button class="btn btn-primary" type="submit">Submit</button>
+        <button 
+          class="btn btn-primary" 
+          type="submit" 
+          [disabled]="!tdForm.valid"
+          >Submit
+        </button>
       </form>
       <hr>
       <div class="mb-3">
